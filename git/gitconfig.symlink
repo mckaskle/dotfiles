@@ -5,10 +5,32 @@
         protocol = https
 [alias]
         co = checkout
-        promote = !$ZSH/bin/git-promote
-        wtf     = !$ZSH/bin/git-wtf
-        rank-contributors = !$ZSH/bin/git-rank-contributors
-        count   = !git shortlog -sn
+        # promote = !$ZSH/bin/git-promote
+        ksreview = "!f() { local SHA=${1:-HEAD}; local BRANCH=${2:-dev}; if [ $SHA == $BRANCH ]; then SHA=HEAD; fi; git difftool -y -t Kaleidoscope $BRANCH...$SHA; }; f"
+        st = status -sb
+        co = checkout
+        b  = branch
+        ba = branch -a
+        p  = push
+        c  = commit
+        pr = remote prune origin
+        cp = cherry-pick
+        l = log --pretty=format:'%C(red)%h%Creset - %C(yellow)%s %Creset%C(green)(%an) %Creset%C(cyan)%ar%Creset' --no-merges
+        lr = log --pretty=format:'%C(red)%h%Creset - %C(yellow)%s %Creset%C(green)(%an) %Creset%C(cyan)%ar%Creset' --reverse
+        ls = log --stat=,80 --pretty=format:'%C(red)%h%Creset - %C(yellow)%s %Creset%C(green)(%an) %Creset%C(cyan)%ar%Creset' --no-merges
+        lg = log --graph --pretty=format:'%C(red)%h%Creset - %C(yellow)%s %Creset%C(green)(%an) %Creset%C(cyan)%ar%Creset'
+        lc = log -1 --pretty=format:'%C(red)%h%Creset - %C(yellow)%s %Creset%C(green)(%an) %Creset%C(cyan)%ar%Creset'
+        la = log -6 --pretty=format:'%C(red)%h%Creset - %C(yellow)%s %Creset%C(green)(%an) %Creset%C(cyan)%ar%Creset'
+        lga = log --graph -10 --pretty=format:'%C(red)%h%Creset - %C(yellow)%s %Creset%C(green)(%an) %Creset%C(cyan)%ar%Creset'
+        lgfp = log --graph --first-parent --pretty=format:'%C(red)%h%Creset - %C(yellow)%s %Creset%C(green)(%an) %Creset%C(cyan)%ar%Creset'
+        lo = log --graph --pretty=format:'%C(yellow)%h%Creset%C(blue)%d%Creset %C(white)%s%Creset %C(white dim)(by %an %ar)%Creset'
+        llo = !git l --all
+        d = diff -w
+        dc = diff -w --cached
+        df = !sh -c 'git d $1^! -- $2' -
+        ds = diff -w --stat=,80
+        dsc = diff -w --stat=,80 --cached
+        dsf = !sh -c 'git ds $1^!' -
 [color]
         diff = auto
         status = auto
@@ -16,13 +38,11 @@
         ui = true
 [core]
         excludesfile = ~/.gitignore
-        editor = vim
+        editor = mate -w
 [apply]
         whitespace = nowarn
 [mergetool]
         keepBackup = false
-[difftool]
-        prompt = false
 [help]
         autocorrect = 1
 [push]
@@ -31,10 +51,14 @@
         #
         # Setting to git 2.0 default to suppress warning message
         default = simple
-[credential]
-	helper = osxkeychain
-[diff "spaceman-diff"]
-  command = /opt/homebrew/bin/spaceman-diff
+
+[diff]
+        tool = Kaleidoscope
+[difftool "Kaleidoscope"]
+        cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[difftool]
+        prompt = false
+        trustExitCode = true
 
 [init]
 	defaultBranch = main
