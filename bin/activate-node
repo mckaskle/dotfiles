@@ -1,0 +1,3 @@
+#!/bin/zsh
+
+docker run -it -v `pwd`:/work -w /work --rm --name node-18 --entrypoint bash node:18
