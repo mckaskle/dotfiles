@@ -43,6 +43,7 @@
         whitespace = nowarn
 [mergetool]
         keepBackup = false
+	prompt = false
 [help]
         autocorrect = 1
 [push]
@@ -54,12 +55,17 @@
 	autoSetupRemote = true
 
 [diff]
-        tool = Kaleidoscope
+	tool = Kaleidoscope
 [difftool "Kaleidoscope"]
-        cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [difftool]
-        prompt = false
-        trustExitCode = true
+	prompt = false
+	trustExitCode = true
 
 [init]
 	defaultBranch = main
+[merge]
+	tool = Kaleidoscope
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustExitCode = true
