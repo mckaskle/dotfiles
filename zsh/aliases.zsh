@@ -14,7 +14,6 @@ function gi() {
   then
     git p
   else
-  then
     echo "unknown command"
   fi
 }
