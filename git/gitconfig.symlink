@@ -7,6 +7,7 @@
         co = checkout
         # promote = !$ZSH/bin/git-promote
         ksreview = "!f() { local SHA=${1:-HEAD}; local BRANCH=${2:-dev}; if [ $SHA == $BRANCH ]; then SHA=HEAD; fi; git difftool -y -t Kaleidoscope $BRANCH...$SHA; }; f"
+        cleanup = "!git branch --merged | grep  -v '\\*\\|main\\|develop\\|development\\|staging\\|master' | xargs -n 1 git branch -d"
         st = status -sb
         co = checkout
         b  = branch
