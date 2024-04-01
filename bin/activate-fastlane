@@ -1,0 +1,4 @@
+#!/bin/zsh
+
+# run build-dockerfiles if the image is not available
+docker run -it --rm -v ~/.ssh:/home/user/.ssh:ro -v `pwd`:/work -w /work mckaskle/fastlane

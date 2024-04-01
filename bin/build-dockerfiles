@@ -1,0 +1,6 @@
+#!/bin/zsh
+
+cd "$(dirname $0)/../dockerfiles"
+
+# find the installers and run them iteratively
+ls | sed -e "s/.Dockerfile$//" | while read dockerfile ; do docker build -t mckaskle/"${dockerfile}" -f "./${dockerfile}.Dockerfile" . ; done
