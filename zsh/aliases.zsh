@@ -1,5 +1,7 @@
 alias reload!='. ~/.zshrc'
 
+alias aws-docker='docker run --rm -it -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli'
+
 alias cls='clear' # Good 'ol Clear Screen command
 
 alias up='./scripts/up'
