@@ -57,7 +57,7 @@ directory_name() {
 battery_status() {
   if test ! "$(uname)" = "Darwin"
   then
-    exit 0
+    return 0
   fi
 
   if [[ $(sysctl -n hw.model) == *"Book"* ]]
@@ -69,7 +69,7 @@ battery_status() {
 remote_username_hostname () {
   if test "$(uname)" = "Darwin"
   then
-    exit 0
+    return 0
   fi
   
   echo "%{$fg_bold[yellow]%}@%m:%{$reset_color%}"
