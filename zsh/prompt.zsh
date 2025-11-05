@@ -72,7 +72,7 @@ remote_username_hostname () {
     exit 0
   fi
   
-  echo "%{$fg_bold[yellow]%}@%m:{$reset_color%}"
+  echo "%{$fg_bold[yellow]%}@%m:%{$reset_color%}"
 }
 
 export PROMPT=$'\n$(battery_status)in $(remote_username_hostname)$(directory_name) $(git_dirty)$(need_push)\n› '
