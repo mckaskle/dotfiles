@@ -1,6 +1,5 @@
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export CLICOLOR=true
-export CLAUDE_CODE_EFFORT_LEVEL=max
 
 fpath=($ZSH/functions $fpath)
 
