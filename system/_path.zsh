@@ -1,4 +1,4 @@
-export PATH="./bin:/usr/local/bin:/usr/local/sbin:$ZSH/bin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:$ZSH/bin:$PATH"
 # add code to path
 # https://code.visualstudio.com/docs/setup/mac#_alternative-manual-instructions
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
